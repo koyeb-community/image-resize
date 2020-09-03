@@ -1,0 +1,12 @@
+{
+  "name": "function-image-resize",
+  "version": "1.0.0",
+  "main": "./image-resize.js",
+  "homepage": "https://www.koyeb.com",
+  "repository": "https://github.com/koyeb-community/function-image-resize",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.742.0",
+    "jimp": "^0.16.1"
+  }
+}

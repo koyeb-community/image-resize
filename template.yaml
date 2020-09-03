@@ -1,0 +1,44 @@
+parameters:
+    - name: STORE
+      description: "The store to watch to trigger the function and save the generated watermark image."
+      type: STORE_REF
+      required: true
+    - name: IMAGE_RESIZE_WIDTH
+      description: "The desired image width. Set to auto if not defined."
+      type: "NUMBER"
+    - name: IMAGE_RESIZE_HEIGHT
+      description: "The desired image height. Set to auto if not defined."
+      type: "NUMBER"
+    - name: IMAGE_RESIZE_PATH
+      description: "The path to store the new generated image."
+      type: "STRING"
+      default: "resized-images/"
+    - name: IMAGE_RESIZE_FORMAT
+      description: "The format of the new generated image."
+      type: "STRING"
+      default: "jpeg"
+template: |
+    env:
+        {{ if .IMAGE_RESIZE_WIDTH }}
+        IMAGE_RESIZE_WIDTH: {{ .IMAGE_RESIZE_WIDTH }}
+        {{ end }}
+        {{ if .IMAGE_RESIZE_HEIGHT }}
+        IMAGE_RESIZE_HEIGHT: {{ .IMAGE_RESIZE_HEIGHT }}
+        {{ end }}
+        {{ if .IMAGE_RESIZE_PATH }}
+        IMAGE_RESIZE_PATH: {{ .IMAGE_RESIZE_PATH }}
+        {{ end }}
+        {{ if .IMAGE_RESIZE_FORMAT }}
+        IMAGE_RESIZE_FORMAT: {{ .IMAGE_RESIZE_FORMAT }}
+        {{ end }}
+    volumes:
+    - name: {{ .STORE }}
+      store: {{ .STORE }}
+    events:
+      - cloudevent:
+          expression: |
+            event.source == "koyeb.com/gateway" &&
+            event.subject == "{{ .STORE }}" &&
+            event.type.matches("s3:ObjectCreated:.*") &&
+            !data.object.key.startsWith("{{ .IMAGE_RESIZE_PATH }}") &&
+            data.object.key.matches("([^\\s]+(\\.(?i)(jpe?g|png|gif|bmp))$)")

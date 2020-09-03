@@ -1,0 +1,4 @@
+functions:
+  - name: function-image-resize
+    runtime: nodejs14
+    handler: image-resize.handler
