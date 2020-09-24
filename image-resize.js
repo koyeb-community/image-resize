@@ -21,6 +21,10 @@ const imageResize = async (s3Instance, bucket, key, watermarkImageUrl) => {
       ? parseInt(process.env.IMAGE_RESIZE_HEIGHT)
       : Jimp.AUTO;
 
+    if (!process.env.IMAGE_RESIZE_WIDTH && !process.env.IMAGE_RESIZE_HEIGHT) {
+      width = 100;
+    }
+
     const resizedImageFormat = process.env.IMAGE_RESIZE_FORMAT || "jpeg";
 
     if (!(resizedImageFormat in resizedImageFormats)) {
@@ -81,8 +85,8 @@ const validateEnvironment = (sourceBucket) => {
   }
 
   if (!process.env?.IMAGE_RESIZE_WIDTH && !process.env?.IMAGE_RESIZE_HEIGHT) {
-    throw new Error(
-      `One of the following environment variables are missing: IMAGE_RESIZE_WIDTH, IMAGE_RESIZE_HEIGHT.`
+    console.log(
+      `None of the following environment variables are defined: IMAGE_RESIZE_WIDTH, IMAGE_RESIZE_HEIGHT. Image will be resized using a default width value of 100px.`
     );
   }
 };

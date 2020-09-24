@@ -23,7 +23,7 @@ With Koyeb, you can run the image resize integration to transform your images in
 - Convert images in different formats
 - Generate different version of your images
 
-## How the Imagga image Function Works with Koyeb
+## How the image resize Function Works with Koyeb
 
 To get started with the image resize function, you have to copy the configuration snippet below and replace the required values with yours.
 This Function is triggered each time an object is created in the Store you use.
