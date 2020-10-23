@@ -4,6 +4,8 @@ status: ACTIVE
 version: 1.0.0
 ---
 
+Yolo
+
 ## Summary
 
 Image resize provides a simple way to resize and convert all your images into jpeg, png, or bmp format.
