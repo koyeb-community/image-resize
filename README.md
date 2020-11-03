@@ -1,7 +1,7 @@
 ---
 display_name: Image resize
 status: ACTIVE
-version: 1.0.0
+short_description: A simple way to resize and convert all your images.
 ---
 
 ## Summary
