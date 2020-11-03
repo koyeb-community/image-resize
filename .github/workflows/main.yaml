@@ -21,4 +21,4 @@ jobs:
         with:
           api_username: ${{ secrets.API_USERNAME }}
           api_password: ${{ secrets.API_STAGING_PASSWORD }}
-          api_url: "https://staging.com"
+          api_url: "https://staging.koyeb.com"
