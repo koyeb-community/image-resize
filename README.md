@@ -1,7 +1,6 @@
 ---
 display_name: Image resize
 status: ACTIVE
-version: 1.0.0
 ---
 
 ## Summary
