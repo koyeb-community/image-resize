@@ -1,6 +1,7 @@
 ---
 display_name: Image resize
 status: ACTIVE
+short_description: A simple way to resize and convert all your images.
 ---
 
 ## Summary
